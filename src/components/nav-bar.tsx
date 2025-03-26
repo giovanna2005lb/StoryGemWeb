@@ -13,7 +13,7 @@ const links = [
 
 export default function NavBar(props: NavBarProps) {
     const { active } = props;
-    const classActive = "border-b-4 border-[#1CCAD8] bg-[#0B132B]"; // Apenas a borda inferior
+    const classActive = "border-b-4 border-[#1CCAD8] bg-[#0B132B]"; // Borda de destaque
 
     return (
         <nav className="flex justify-between bg-[#1C2541] px-6 h-18 items-center">
