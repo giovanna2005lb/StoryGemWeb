@@ -12,24 +12,22 @@ const links = [
 ]
 
 export default function NavBar(props: NavBarProps) {
-    const { active } = props
-    const classActive = "border-separate border-spacing-10 border-b-4 border-teal-300 relative" // py-2 px-4 bg-indigo-950 rounded-lg
+    const { active } = props;
+    const classActive = "border-b-4 border-teal-300 bg-indigo-950"; // Apenas a borda inferior
 
     return (
-        <nav className="flex justify-between bg-blue-950 px-6 h-22 items-center content-center">
-            <ul className="flex gap-12 text-2xl mx-auto">
-                {links.map(link =>
-                (
-                    <li className={active === link.label ? classActive : ""}>
-                        <Link href={link.href}>
+        <nav className="flex justify-between bg-blue-950 px-6 h-20 items-center">
+            <ul className="flex gap-12 text-2xl mx-auto h-full items-center">
+                {links.map(link => (
+                    <li className={`h-full flex items-end pb-2 ${active === link.label ? classActive : ""}`}>
+                        <Link href={link.href} className="px-4 py-2">
                             {link.label}
                         </Link>
                     </li>
-
-                )
-                )}
+                ))}
             </ul>
-            <img className="size-13 rounded-full  " src="http://github.com/giovanna2005lb.png" alt="" />
+            <img className="size-13 rounded-full" src="http://github.com/giovanna2005lb.png" alt="" />
         </nav>
-    )
+    );
 }
+
