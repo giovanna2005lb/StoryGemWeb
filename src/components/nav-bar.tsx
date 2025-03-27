@@ -17,18 +17,18 @@ export default function NavBar(props: NavBarProps) {
     const classActive = "border-b-4 border-[#1CCAD8] bg-[#0B132B]"; // Borda de destaque
 
     return (
-        <nav className="flex justify-between bg-[#1C2541] px-6 h-18 items-center">
-            <ul className="flex gap-12 text-2xl mx-auto h-full items-center">
+        <nav className="flex justify-between bg-[#1C2541] h-20 items-center">
+            <ul className="flex gap-12 text-3xl mx-auto h-full items-center">
                 {links.map(link => (
                 <li key={link.label} className={`h-full flex items-end pb-2 ${active === link.label ? classActive : ""}`}>
-                    <Link href={link.href} className="px-4 py-2">
+                    <Link href={link.href} className="px-10 py-3">
                     {link.label}
                     </Link>
                 </li>
     ))}
             </ul>
             <Image
-                className="rounded-full"
+                className="absolute rounded-full right-6"
                 src="/default-icon.jpeg"
                 alt="Icone padrão"
                 width={50}
