@@ -3,6 +3,7 @@
 import Link from "next/link";
 import {Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Avatar, User,Button, cn, DropdownSection} from "@heroui/react";
 import { LogIn, Plus } from "lucide-react";
+import Image from "next/image";
 
 interface NavBarProps {
     active: "Home" | "Criações" | "Árvore Genealógica" | "Linha do Tempo"
@@ -33,11 +34,12 @@ export default function NavBar(props: NavBarProps) {
             <div className="flex items-center gap-4">
                 <Dropdown placement="bottom-end" className="bg-[#1C2541] px-2 items-center border-[#0B132B] border-5">
                     <DropdownTrigger>
-                        <Avatar
-                          isBordered
-                          as="button"
-                          className="rounded-full transition-transform"
-                          src="http://github.com/giovanna2005lb.png"
+                        <Image
+                        className="rounded-full"
+                        src="/default-icon.jpeg"
+                        alt="Icone padrão"
+                        width={50}
+                        height={50}
                         />
                     </DropdownTrigger>
                     <DropdownMenu 
