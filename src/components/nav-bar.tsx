@@ -1,4 +1,8 @@
+"use client";
+
 import Link from "next/link";
+import {Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Avatar, User,Button, cn, DropdownSection} from "@heroui/react";
+import { LogIn, Plus } from "lucide-react";
 import Image from "next/image";
 
 interface NavBarProps {
@@ -27,14 +31,37 @@ export default function NavBar(props: NavBarProps) {
                 </li>
     ))}
             </ul>
-            <Image
-                className="absolute rounded-full right-6"
-                src="/default-icon.jpeg"
-                alt="Icone padrão"
-                width={50}
-                height={50}
-            />
+        
+            <div className="flex items-center gap-4">
+                <Dropdown placement="bottom-end" className="bg-[#1C2541] px-2 items-center border-[#0B132B] border-5">
+                    <DropdownTrigger>
+                        <Image
+                        className="rounded-full"
+                        src="/default-icon.jpeg"
+                        alt="Icone padrão"
+                        width={50}
+                        height={50}
+                        />
+                    </DropdownTrigger>
+                    <DropdownMenu 
+                    aria-label="Profile Actions" 
+                    variant="flat" 
+                    className="w-30 py-2 bg-[#1C2541]  rounded-lg shadow-lg">
+                        <DropdownItem key="login">
+                            <div className="flex items-center gap-2">
+                                <LogIn className="w-5 h-5" />
+                                <span>Login</span>
+                            </div>
+                        </DropdownItem>
+                        <DropdownItem key="register">
+                            <div className="flex items-center gap-2">
+                                <Plus className="w-5 h-5" />
+                                <span>Register</span>
+                            </div>
+                        </DropdownItem>
+                    </DropdownMenu>
+                </Dropdown>
+            </div>
         </nav>
     );
 }
-
