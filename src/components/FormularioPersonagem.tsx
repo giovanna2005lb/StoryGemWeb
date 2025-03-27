@@ -24,7 +24,7 @@ const FormularioPersonagem = ({
       setIdade(initialValues.idade);
       setDescricao(initialValues.descricao);
       setPoderes(initialValues.poderes);
-      setImagem(initialValues.imagem || null); // Para edição, preenche com os dados existentes
+      setImagem(initialValues.imagem || null); 
     }
   }, [initialValues]);
 
