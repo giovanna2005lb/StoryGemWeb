@@ -1,4 +1,8 @@
+"use client";
+
 import Link from "next/link";
+import {Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Avatar, User,Button, cn, DropdownSection} from "@heroui/react";
+import { LogIn, Plus } from "lucide-react";
 
 interface NavBarProps {
     active: "Home" | "Criações" | "Árvore Genealógica" | "Linha do Tempo"
@@ -26,9 +30,35 @@ export default function NavBar(props: NavBarProps) {
                 </li>
     ))}
             </ul>
-
-            <img className="size-12 rounded-full" src="http://github.com/giovanna2005lb.png" alt="" />
+            <div className="flex items-center gap-4">
+                <Dropdown placement="bottom-end" className="bg-[#1C2541] px-2 items-center border-[#0B132B] border-5">
+                    <DropdownTrigger>
+                        <Avatar
+                          isBordered
+                          as="button"
+                          className="rounded-full transition-transform"
+                          src="http://github.com/giovanna2005lb.png"
+                        />
+                    </DropdownTrigger>
+                    <DropdownMenu 
+                    aria-label="Profile Actions" 
+                    variant="flat" 
+                    className="w-30 py-2 bg-[#1C2541]  rounded-lg shadow-lg">
+                        <DropdownItem key="login">
+                            <div className="flex items-center gap-2">
+                                <LogIn className="w-5 h-5" />
+                                <span>Login</span>
+                            </div>
+                        </DropdownItem>
+                        <DropdownItem key="register">
+                            <div className="flex items-center gap-2">
+                                <Plus className="w-5 h-5" />
+                                <span>Register</span>
+                            </div>
+                        </DropdownItem>
+                    </DropdownMenu>
+                </Dropdown>
+            </div>
         </nav>
     );
 }
-
