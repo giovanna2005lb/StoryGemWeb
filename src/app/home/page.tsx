@@ -1,9 +1,8 @@
 'use client';
 
-import {Button} from "@heroui/react";
 import NavBar from "@/components/nav-bar";
 import Image from "next/image";
-
+import { Button } from "@/components/ui/button"
 
 export default function HomePage(){
     return (
