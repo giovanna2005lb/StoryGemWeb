@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 interface NavBarProps {
     active: "Home" | "Criações" | "Árvore Genealógica" | "Linha do Tempo"
@@ -26,8 +27,13 @@ export default function NavBar(props: NavBarProps) {
                 </li>
     ))}
             </ul>
-
-            <img className="size-12 rounded-full" src="http://github.com/giovanna2005lb.png" alt="" />
+            <Image
+                className="rounded-full"
+                src="/default-icon.jpeg"
+                alt="Icone padrão"
+                width={50}
+                height={50}
+            />
         </nav>
     );
 }
