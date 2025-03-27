@@ -1,13 +1,13 @@
 import Link from "next/link";
 
 interface NavBarProps {
-    active: "Home" | "Criações" | "Árvore genealógica" | "Linha do Tempo"
+    active: "Home" | "Criações" | "Árvore Genealógica" | "Linha do Tempo"
 }
 
 const links = [
     { label: "Home", href: "/home" },
     { label: "Criações", href: "/creations" },
-    { label: "Árvore genealógica", href: "/family_tree" },
+    { label: "Árvore Genealógica", href: "/family_tree" },
     { label: "Linha do Tempo", href: "/timeline" },
 ]
 
