@@ -3,6 +3,7 @@
 import NavBar from "@/components/nav-bar";
 import Image from "next/image";
 import { Button } from "@/components/ui/button"
+import Link from 'next/link';
 
 export default function HomePage(){
     return (
@@ -53,15 +54,17 @@ export default function HomePage(){
                         height={50}
                     />
                     
-                    <Button
-                    className=" absolute text-5xl py-10 px-30 top-70
-                        bg-gradient-to-br from-[#1CCAD8] to-[#03383c]
-                        text-white shadow-lg rounded-lg">
-                    </Button>
+                    <Link href="/creations" className="w-full flex items-center justify-center mt-10">
+                        <Button
+                        className="absolute text-5xl py-10 px-30
+                            bg-gradient-to-br from-[#1CCAD8] to-[#03383c]
+                            text-white shadow-lg rounded-lg">
+                        </Button>
 
-                    <button className="relative bg-[#1C2541] rounded-lg mt-14 text-5xl py-3 px-15 hover:opacity-90 
-                transition-opacity duration-500 ease-in-out">
-                    <span className="text-[#1CCAD8]">START</span></button>
+                        <button className="relative bg-[#1C2541] rounded-lg text-5xl py-3 px-15 hover:opacity-90 
+                    transition-opacity duration-500 ease-in-out">
+                        <span className="text-[#1CCAD8]">START</span></button>
+                    </Link>
 
                     <Image
                         className="mt-20"

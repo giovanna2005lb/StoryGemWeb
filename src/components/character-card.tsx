@@ -1,13 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Character } from "@/lib/character";
 import Image from "next/image";
 
-interface Character {
-  name: string;
-  age: string;
-  description: string;
-  powers: string;
-  image: File | null;
-}
 
 interface CharacterProps {
   character : Character
@@ -16,11 +10,10 @@ interface CharacterProps {
 export default function CharacterCard({character} : CharacterProps){
   
   // Condicao para a insercao de imagem
-  const imgSrc = character.image ? URL.createObjectURL(character.image) : "/default-icon.jpeg";
+  const imgSrc = character.imgUrl ? character.imgUrl : "/default-icon.jpeg";
 
   return (
     <>
-    <h1>teste</h1>
     <Card className="flex flex-col gap-5 w-80 h-90 bg-[#1C2541] border-2 border-[#5f6880] items-center">
       <CardHeader className="flex items-center w-full pl-2">
           <Image
@@ -49,8 +42,6 @@ export default function CharacterCard({character} : CharacterProps){
       </CardContent>
       </div>
     </Card>
-
-    
     </>
     
   )
