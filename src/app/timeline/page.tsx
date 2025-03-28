@@ -53,12 +53,12 @@ export default function PaginaLinhaDoTempo() {
   return (
     <>
       <NavBar active="Linha do Tempo" />
-      <div className="min-h-screen flex flex-col">
+      <div className="flex flex-col">
         <div className="flex justify-between items-center p-4">
-          <h1 className="text-2xl">Sua Linha do Tempo</h1>
+          <h1 className="text-3xl">Sua Linha do Tempo</h1>
           <Button
             onClick={() => setShowForm(!showForm)}
-            className="bg-[#117144]"
+            className="bg-[#117144] text-xl py-5"
           >
             {showForm ? "Cancelar" : "Adicionar Evento"}
           </Button>
@@ -72,15 +72,15 @@ export default function PaginaLinhaDoTempo() {
                 value={eventName}
                 onChange={(e) => setEventName(e.target.value)}
                 placeholder="Nome do evento"
-                className="border-2 p-2"
+                className="border-2 p-2 rounded-xl text-xl"
               />
               <textarea
                 value={eventDescription}
                 onChange={(e) => setEventDescription(e.target.value)}
                 placeholder="Descrição do evento"
-                className="border-2 p-2"
+                className="border-2 p-2 rounded-xl text-xl"
               />
-              <Button onClick={handleAddEvent} className="bg-[#4CAF50] text-white">
+              <Button onClick={handleAddEvent} className="bg-[#4CAF50] text-white text-xl">
                 Adicionar Evento
               </Button>
             </div>
@@ -89,7 +89,7 @@ export default function PaginaLinhaDoTempo() {
 
         <div className="flex flex-col gap-4 p-4">
           {events.length === 0 ? (
-            <p className="text-center">Nenhum evento na linha do tempo.</p>
+            <p className="text-center text-2xl">Nenhum evento na linha do tempo.</p>
           ) : (
             events.map((event, index) => (
               <div
@@ -101,8 +101,8 @@ export default function PaginaLinhaDoTempo() {
                 className="bg-[#1C2541] p-4 rounded-lg"
               >
                 <div className="flex justify-between items-center">
-                  <p className="text-lg font-semibold">{event.name}</p>
-                  <p className="text-sm">{event.description}</p>
+                  <p className="font-semibold text-2xl">{event.name}</p>
+                  <p className="text-xl">{event.description}</p>
                   <button
                     onClick={() => handleDeleteEvent(index)}
                     className="bg-[#480F0F] p-2 rounded-full"

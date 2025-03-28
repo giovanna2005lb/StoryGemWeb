@@ -4,7 +4,7 @@ export default function FamilyTreePage(){
     return (
         <>
             <NavBar active="Árvore Genealógica"/>
-            <p>Página em desenvolvimento.</p>
+            <p className="text-3xl text-center mt-20">Página em desenvolvimento</p>
         </>
     )
 }
