@@ -25,7 +25,7 @@ export default function CharacterCard({character} : CharacterProps){
           />
           <div className="flex flex-col justify-center pl-4">
             <CardTitle className="text-3xl text-accent">{character.name}</CardTitle>
-            <CardDescription className="text-xl text-[#858995]">{character.age}</CardDescription>
+            <CardDescription className="text-xl text-[#858995]">Idade: {character.age}</CardDescription>
          </div>
       </CardHeader>
       {/* DIV DO CONTEÚDO DO CARD */}

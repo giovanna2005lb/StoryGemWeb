@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import NavBar from "@/components/nav-bar";
-import CardPersonagem from "@/components/character-card";
+import CharacterCard from "@/components/character-card";
 import CharacterForm from "@/components/character-form";
 import { PencilLine, Trash2 } from "lucide-react";
 import { Character } from "@/lib/character";
@@ -134,11 +134,11 @@ export default function CreationsPage() {
       {!showForm && (
         <div className="flex flex-wrap justify-center gap-4 mt-6">
           {characters.length === 0 ? (
-            <p className="text-center">Nenhum personagem criado ainda.</p>
+            <p className="text-center text-4xl mt-80">Nenhum personagem criado</p>
           ) : (
             characters.map((character, index) => (
               <div key={index} className="relative">
-                <CardPersonagem character={character} />
+                <CharacterCard character={character} />
                 {isDeleting && (
                   <button
                     onClick={() => handleDeleteCharacter(index, character)}
@@ -164,14 +164,14 @@ export default function CreationsPage() {
       <div className="flex justify-center gap-4 mt-auto mb-6">
         <Button
           variant="outline"
-          className="border-[#1CCAD8] border-4 bg-[#362C07] w-50 h-14 text-lg"
+          className="border-[#1CCAD8] border-4 bg-[#362C07] w-50 h-14 text-3xl"
           onClick={() => setIsEditing(!isEditing)} /* true */
         >
           Editar
         </Button>
         <Button
           variant="outline"
-          className="border-4 border-[#1CCAD8] bg-[#091A09] w-54 h-16 text-lg translate-y-[-8px]"
+          className="border-4 border-[#1CCAD8] bg-[#091A09] w-54 h-16 text-3xl translate-y-[-8px]"
           onClick={() => {
             setIsEditing(false);
             setShowForm(!showForm);
@@ -181,7 +181,7 @@ export default function CreationsPage() {
         </Button>
         <Button
           variant="outline"
-          className="border-[#1CCAD8] border-4 bg-[#480F0F] w-50 h-14 text-lg"
+          className="border-[#1CCAD8] border-4 bg-[#480F0F] w-50 h-14 text-3xl"
           onClick={() => setIsDeleting(!isDeleting)} 
         >
           Deletar
