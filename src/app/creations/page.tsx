@@ -3,16 +3,25 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import NavBar from "@/components/nav-bar";
-import CardPersonagem from "@/components/CardPersonagem";
-import FormularioPersonagem from "@/components/FormularioPersonagem";
+import CardPersonagem from "@/components/character-card";
+import FormularioPersonagem from "@/components/character-form";
 import { PencilLine, Trash2 } from "lucide-react";
 
-export default function ManagerCharacterPage() {
+// SERVER ACTIONS
+async function getCharacters(){
+  const response = await fetch("http://localhost:8080/characters"); //resposta http
+  return await response.json(); //converte as respostas para json e ja as retorna
+}
+//n esquece o async na funcao
+export default function CreationsPage() {
+  // const data : Array<Character> = await getCharacters();
+
   const [showForm, setShowForm] = useState(false); 
   const [characters, setCharacters] = useState<any[]>([]); 
   const [isDeleting, setIsDeleting] = useState(false); 
   const [isEditing, setIsEditing] = useState(false); 
   const [editingIndex, setEditingIndex] = useState<number | null>(null); 
+  
   const handleAddCharacter = (personagem: any) => {
     setCharacters((prevCharacters) => [...prevCharacters, personagem]);
     setShowForm(false); 
@@ -53,7 +62,7 @@ export default function ManagerCharacterPage() {
           ) : (
             characters.map((personagem, index) => (
               <div key={index} className="relative">
-                <CardPersonagem personagem={personagem} />
+                <CardPersonagem character={personagem} />
                 {isDeleting && (
                   <button
                     onClick={() => handleDeleteCharacter(index)}
@@ -65,7 +74,7 @@ export default function ManagerCharacterPage() {
                 {isEditing && (
                   <button
                     onClick={() => handleEditCharacter(index)}
-                    className="absolute top-0 right-12 p-2 bg-yellow-500 rounded-full"
+                    className="absolute top-0 right-0 p-2 bg-yellow-500 rounded-full"
                   >
                     <PencilLine />
                   </button>
