@@ -64,47 +64,47 @@ export default function CharacterForm({ onSave, onCancel, initialValues}: Charac
     };
 
     return (
-      <form onSubmit={handleSubmit} className=" border-1 flex flex-col gap-2 p-4  mb-30 mx-80 rounded-2xl bg-[#1C2541]">
-        <span className="text-xl">Nome *</span>
+      <form onSubmit={handleSubmit} className=" border-1 flex flex-col gap-2 p-4  mb-20 mx-80 rounded-2xl bg-[#1C2541]">
+        <span className="text-2xl">Nome *</span>
         <input
           type="text"
           placeholder="Nome"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="border-2 p-2 rounded-2xl"
+          className="border-2 p-2 rounded-2xl text-xl"
         />
 
-        <span className="text-xl">Idade *</span>
+        <span className="text-2xl">Idade *</span>
         <input
           type="text"
           placeholder="Idade"
           value={age}
           onChange={(e) => setAge(e.target.value)}
-          className="border-2 p-2 rounded-2xl"
+          className="border-2 p-2 rounded-2xl text-xl"
         />
 
-        <span className="text-xl">Descrição *</span>
+        <span className="text-2xl">Descrição *</span>
         <textarea
           placeholder="Descrição"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          className="border-2 p-2 rounded-2xl"
+          className="border-2 p-2 rounded-2xl text-xl"
         />
 
-        <span className="text-xl">Poderes *</span>
+        <span className="text-2xl">Poderes *</span>
         <input
           type="text"
           placeholder="Poderes"
           value={powers}
           onChange={(e) => setPowers(e.target.value)}
-          className="border-2 p-2 rounded-2xl"
+          className="border-2 p-2 rounded-2xl text-xl"
         />
 
-        <span className="text-xl">Imagem</span>
+        <span className="text-2xl">Imagem</span>
         <input
           type="file"
           onChange={handleImageChange}
-          className="border-2 p-2 rounded-2xl"
+          className="border-2 p-2 rounded-2xl text-xl"
         />
 
         <div className="flex gap-4 mt-4">
