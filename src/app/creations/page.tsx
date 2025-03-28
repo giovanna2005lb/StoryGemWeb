@@ -1,20 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import NavBar from "@/components/nav-bar";
 import CardPersonagem from "@/components/character-card";
-import FormularioPersonagem from "@/components/character-form";
+import CharacterForm from "@/components/character-form";
 import { PencilLine, Trash2 } from "lucide-react";
+import { Character } from "@/lib/character";
 
 // SERVER ACTIONS
 async function getCharacters(){
-  const response = await fetch("http://localhost:8080/characters"); //resposta http
+  const response = await fetch("http://localhost:8080/creations"); //resposta http
   return await response.json(); //converte as respostas para json e ja as retorna
 }
-//n esquece o async na funcao
+
 export default function CreationsPage() {
-  // const data : Array<Character> = await getCharacters();
 
   const [showForm, setShowForm] = useState(false); 
   const [characters, setCharacters] = useState<any[]>([]); 
@@ -22,12 +22,71 @@ export default function CreationsPage() {
   const [isEditing, setIsEditing] = useState(false); 
   const [editingIndex, setEditingIndex] = useState<number | null>(null); 
   
-  const handleAddCharacter = (personagem: any) => {
-    setCharacters((prevCharacters) => [...prevCharacters, personagem]);
-    setShowForm(false); 
+  // roda por padrão quando a pagina é iniciada
+  useEffect(() => {
+    async function loadCharacters(){
+      const data = await getCharacters();
+      setCharacters(data);
+    }
+    loadCharacters();
+  }, []);
+
+  // CRIAR NOVA FICHA 
+  const handleAddCharacter = async (character: Character) => {
+    try {
+      
+      if (character.imgUrl && character.imgUrl.length > 255) {
+        character.imgUrl = null;
+      }
+      // envia as informacoes para o metodo POST (em formato JSON)
+      const response = await fetch("http://localhost:8080/creations", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(character)
+      });
+
+      if(!response.ok) {
+        throw new Error("Erro ao cadastrar ficha");
+      }
+
+      // após criar, roda a função puxando as infos do GET
+      const updatedC = await getCharacters();
+
+      // atualiza a lista de fichas e fecha o formulario
+      setCharacters(updatedC);
+      setShowForm(false);
+
+    } catch (error) {
+      console.error("Erro ao atualizar ficha:", error);
+    }
   };
 
-  const handleDeleteCharacter = (index: number) => {
+  const handleDeleteCharacter = async (index: number, character : Character) => {
+    try {
+      
+      console.log("id:", character.id)
+      const response = await fetch("http://localhost:8080/creations", {
+        method: "DELETE",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(character)
+      });
+
+      if(!response.ok) {
+        throw new Error("Erro ao deletar ficha");
+      }
+
+      // após criar, roda a função puxando as infos do GET
+      const updatedC = await getCharacters();
+
+      // atualiza a lista de fichas e fecha o formulario
+      setCharacters(updatedC);
+    } catch (error) {
+      console.error("Erro ao deletar ficha:", error);
+    }
     setCharacters((prevCharacters) =>
       prevCharacters.filter((_, i) => i !== index)
     );
@@ -43,12 +102,29 @@ export default function CreationsPage() {
     setEditingIndex(null);
   };
 
-  const handleSaveEdit = (updatedCharacter: any) => {
-    setCharacters((prevCharacters) =>
-      prevCharacters.map((char, i) => (i === editingIndex ? updatedCharacter : char))
-    );
-    setIsEditing(false);
-    setEditingIndex(null);
+  const handleSaveEdit = async (updatedCharacter: Character) => {
+
+    try {
+      if (editingIndex === null) return;
+
+      const response = await fetch("http://localhost:8080/creations",
+        {
+          method: "PUT",
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify(updatedCharacter)
+        });
+
+        if (!response.ok) throw new Error("Erro ao atualizar");
+
+        setCharacters((prevCharacters) =>
+          prevCharacters.map((char, i) => (i === editingIndex ? updatedCharacter : char))
+        );
+        setIsEditing(false);
+        setEditingIndex(null);
+
+    } catch (error) {
+      console.error("Erro na edição:", error)
+    }
   };
 
   return (
@@ -60,12 +136,12 @@ export default function CreationsPage() {
           {characters.length === 0 ? (
             <p className="text-center">Nenhum personagem criado ainda.</p>
           ) : (
-            characters.map((personagem, index) => (
+            characters.map((character, index) => (
               <div key={index} className="relative">
-                <CardPersonagem character={personagem} />
+                <CardPersonagem character={character} />
                 {isDeleting && (
                   <button
-                    onClick={() => handleDeleteCharacter(index)}
+                    onClick={() => handleDeleteCharacter(index, character)}
                     className="absolute top-0 right-0 p-2 bg-red-500 rounded-full"
                   >
                     <Trash2 />
@@ -89,7 +165,7 @@ export default function CreationsPage() {
         <Button
           variant="outline"
           className="border-[#1CCAD8] border-4 bg-[#362C07] w-50 h-14 text-lg"
-          onClick={() => setIsEditing(!isEditing)} 
+          onClick={() => setIsEditing(!isEditing)} /* true */
         >
           Editar
         </Button>
@@ -111,22 +187,24 @@ export default function CreationsPage() {
           Deletar
         </Button>
       </div>
-
+      
+      {/* FORMULARIO DE CRIAÇÃO */}
       {showForm && (
         <div className="mt-6">
-          <FormularioPersonagem
+          <CharacterForm
             onSave={handleAddCharacter}
             onCancel={() => setShowForm(false)}
           />
         </div>
       )}
 
+      {/* FORMULARIO DE EDIÇÃO */}
       {isEditing && editingIndex !== null && (
         <div className="mt-6">
-          <FormularioPersonagem
+          <CharacterForm
             onSave={handleSaveEdit}
             onCancel={handleCancelEdit}
-            initialValues={characters[editingIndex]} 
+            initialValues={{ ...characters[editingIndex], id: characters[editingIndex].id }} 
           />
         </div>
       )}
