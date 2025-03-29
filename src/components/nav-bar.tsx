@@ -3,7 +3,6 @@ import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
-    DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"  
@@ -24,7 +23,7 @@ const links = [
 
 export default function NavBar(props: NavBarProps) {
     const { active } = props;
-    const classActive = "border-b-4 border-[#1CCAD8] bg-[#0B132B]"; // Borda de destaque
+    const classActive = "border-b-4 border-[#1CCAD8] bg-[#0B132B]";
 
     return (
         <nav className="flex justify-between bg-[#1C2541] h-20 items-center px-6">

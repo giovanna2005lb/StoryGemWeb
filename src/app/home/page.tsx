@@ -16,20 +16,27 @@ export default function HomePage(){
             <main className="flex-1 flex flex-col items-center pt-8 pb-10">
                     <h2 className="text-3xl text-[#647992]">"Um espaço vazio para sua mente criar"</h2>
                     <h1 className="text-6xl text-[#1CCAD8] pt-5">Construa seu próprio universo!</h1>
-                    <Image
-                        className="absolute top-60 right-120"
-                        src="/earth.gif"
-                        alt="Animação da terra girando"
-                        width={130}
-                        height={130}
-                    />
-                    <Image
-                        className="absolute top-64 left-130"
-                        src="/neptune.gif"
-                        alt="Animação de netuno girando"
-                        width={100}
-                        height={100}
-                    />
+                    <div className="flex items-center justify-center gap-19">
+                        <Image
+                            src="/earth.gif"
+                            alt="Animação da terra girando"
+                            width={130}
+                            height={130}
+                        />
+                        <div className="w-full flex items-center justify-center mt-10">
+                            <Link href="/creations">
+                                <Button className="bg-[#1C2541] border-4 border-[#1CCAD8] rounded-lg text-5xl py-8 px-15 hover:opacity-90 
+                            transition-opacity duration-500 ease-in-out hover:cursor-pointer">
+                                <span className="text-[#1CCAD8]">START</span></Button>
+                            </Link>
+                        </div>
+                        <Image
+                            src="/neptune.gif"
+                                alt="Animação de netuno girando"
+                            width={100}
+                            height={100}
+                        />
+                    </div>
 
                     <Image
                         className="absolute brightness-500 top-27 left-110"
@@ -54,13 +61,6 @@ export default function HomePage(){
                         width={50}
                         height={50}
                     />
-                    <div className="w-full flex items-center justify-center mt-10">
-                        <Link href="/creations">
-                            <Button className="bg-[#1C2541] border-4 border-[#1CCAD8] rounded-lg text-5xl py-8 px-15 hover:opacity-90 
-                        transition-opacity duration-500 ease-in-out hover:cursor-pointer">
-                            <span className="text-[#1CCAD8]">START</span></Button>
-                        </Link>
-                    </div>
 
                     <div className="w-full mt-25 flex gap-10 justify-center">
                         <Card className="flex flex-col gap-5 w-80 h-90 bg-[#1C2541] border-2 border-[#5f6880] items-center">
