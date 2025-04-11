@@ -3,7 +3,6 @@ import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
-    DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"  
@@ -12,7 +11,7 @@ import { LogIn, Plus } from "lucide-react";
 import Image from "next/image";
 
 interface NavBarProps {
-    active: "Home" | "Criações" | "Árvore Genealógica" | "Linha do Tempo"
+    active: "Home" | "Criações" | "Árvore Genealógica" | "Linha do Tempo" | "Login" | "Register"
 }
 
 const links = [
@@ -24,7 +23,7 @@ const links = [
 
 export default function NavBar(props: NavBarProps) {
     const { active } = props;
-    const classActive = "border-b-4 border-[#1CCAD8] bg-[#0B132B]"; // Borda de destaque
+    const classActive = "border-b-4 border-[#1CCAD8] bg-[#0B132B]";
 
     return (
         <nav className="flex justify-between bg-[#1C2541] h-20 items-center px-6">
@@ -57,18 +56,19 @@ export default function NavBar(props: NavBarProps) {
             className="w-30 py-2 bg-[#1C2541] rounded-lg shadow-lg border-[#0B132B] border-2 mt-3"
           >
             <DropdownMenuItem key="login" className="hover:bg-[#0B132B] hover:text-[#ABEFF5]">
-              <div className="flex items-center gap-5 text-[#ABEFF5]">
+              <Link href="/login" className="flex items-center gap-5 text-[#ABEFF5] w-full h-full">
                 <LogIn className="w-9 h-9" />
                 <span className="text-xl">Login</span>
-              </div>
+              </Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator className="border-[#0B132B] border-2" />
             <DropdownMenuItem key="register" className="hover:bg-[#0B132B] hover:text-[#ABEFF5]">
-              <div className="flex items-center gap-4 text-[#ABEFF5]">
+              <Link href="/register" className="flex items-center gap-4 text-[#ABEFF5] w-full h-full">
                 <Plus className="w-9 h-9" />
                 <span className="text-xl">Register</span>
-              </div>
+              </Link>
             </DropdownMenuItem>
+
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
